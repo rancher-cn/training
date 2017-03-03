@@ -34,7 +34,7 @@ services:
       port_rules:
       - hostname: ''
         priority: 1
-        protocol: http
+        protocol: tcp
         service: nginx
         source_port: $ext_port
         target_port: 80
