@@ -1,0 +1,8 @@
+name: Catalog Demo
+description: |
+  Demo nginx service
+version: 0.1
+category: Demo
+maintainer: community
+license:
+

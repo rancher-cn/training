@@ -1,0 +1,38 @@
+.catalog:
+  name: Demo
+  description: |
+    (Training) Catalog Demo
+  version: 0.1
+  minimum_rancher_version: v1.0.0
+  maintainer: "Rancher-CN <rancher-cn@outlook.com>"
+  questions:
+    - variable: "scale_number"
+      description: |
+        Scale Number 
+      label: "Nginx Scale Number:"
+      default: "1"
+      required: true
+      type: "int"
+
+services:
+  nginx:
+    scale: $scale_number
+    start_on_create: true
+  lb:
+    scale: 1
+    start_on_create: true
+    lb_config:
+      certs: []
+      port_rules:
+      - hostname: ''
+        priority: 1
+        protocol: http
+        service: nginx
+        source_port: 80
+        target_port: 80
+    health_check:
+      response_timeout: 2000
+      healthy_threshold: 2
+      port: 42
+      unhealthy_threshold: 3
+      interval: 2000
