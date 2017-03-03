@@ -13,6 +13,14 @@
       default: "1"
       required: true
       type: "int"
+    - variable: "ext_port"
+      description: |
+        External Port
+      label: "HAProxy External Port:"
+      default: "8080"
+      required: true
+      type: "int"
+
 
 services:
   nginx:
@@ -28,7 +36,7 @@ services:
         priority: 1
         protocol: http
         service: nginx
-        source_port: 80
+        source_port: $ext_port
         target_port: 80
     health_check:
       response_timeout: 2000
